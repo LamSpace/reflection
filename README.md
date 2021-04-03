@@ -1,37 +1,15 @@
 # reflection
 
-#### 介绍
-基于Golang的反射实现依赖注入、实例方法调用等等
+#### 介绍（Introductions）
+**reflection** 是基于Golang的反射机制进行依赖注入、实例方法调用等的简单实现。
 
-#### 软件架构
-软件架构说明
+1. **reflection.ForMethod(m interface{})** 是调用普通方法的入口，调用 **Call(params ...interface{}) ** 或者 **CallType(params ...interface{})** 可以进行普通方法调用并获得返回结果。其中前者普通方法的参数是严格按照方法定义中参数的类型依次传递，参数可存在相同类型的参数；而后者可不按照方法定义中参数的类型依次传递，前提是方法的所有参数类型均不同。
+2. **reflection.ForInstance(v interface{})** 是注入结构体实例并调用实例方法的入口，调用 **Map(key string, value interface{})** 和 **Inject()** 可按照结构体实例的字段名注入依赖，允许存在相同类型的字段；调用 **MapType(value interface{})** 和 **InjectType()** 可按照结构体字段的类型进行注入，前提是结构体中每个字段的类型均不一致。调用 **Invoke(function string, params ...interface{})** 和 **InvokeType(function string, params ...interface{})** 可调用实例的方法，参数的传递与 **Call(params ...interface{})** 和 **CallType(params ...interface{})** 类似。
 
+***
 
-#### 安装教程
+**reflection** is a simple implementation of reflect scheme of Golang to inject dependencies, invoke method and so on.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. **reflection.ForMethod(m interface{})** is entrance to invoke normal method by using  **Call(params ...interface{}) ** or **CallType(params ...interface{})** and responses can be acquired where types of the former's parameters must be consistent with that in the defination of invoked method with the same order strictly, allowing same-type parameters, while the latter invokes method by types of parameters whose order may not be the same with that in the defination of invoked method if and only if parameters of invoked method differs from each others.
+2. **reflection.ForInstance(v interface{})** is entrance to inject dependencies and invoke instance's method of a struct. By calling  **Map(key string, value interface{})** and **Inject()**, fields of specified struct can be injected by field name, allowing parameters own the same type while calling  **MapType(value interface{})** and **InjectType()** can also inject dependencies only when all types of fields are different from each other. After injecting dependencies, using  **Invoke(function string, params ...interface{})** and **InvokeType(function string, params ...interface{})** can invoke a specified method of struct instance and differences between both are consistent with that of  **Call(params ...interface{})** and **CallType(params ...interface{})**.
 
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
